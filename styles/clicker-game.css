@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+}
+body{
+    margin: 10px 0px;
+    position: relative;
+}
+
+nav{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: yellow;
+    border-radius: 2px;
+    transition: box-shadow 0.4s ease-in-out;
+    cursor: pointer;
+
+}
+nav:hover{
+    box-shadow: 1px 1px 10px 2px rgb(159, 159, 159);
+}
+.upgrade-button{
+    cursor: pointer;
+}
+
+.upgrade-button-container{
+    cursor: pointer;
+    position: relative;
+    bottom: 0px;
+    background-color: grey;
+}
