@@ -33,7 +33,7 @@ nav:hover{
 .upgrade-button-container{
     cursor: pointer;
     position: absolute;
-    top: 100px;
+    top: 400px;
     width: 100%;
     background-color: rgb(251, 26, 26);
     height: 300px;
@@ -50,5 +50,32 @@ nav:hover{
     height: 100px;
     width: 100%;
     display: flex; 
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clicker-container{
+    display: flex;
     justify-content: center;
+    
+    
+}
+.clicker-button{
+    font-size: 15px;
+    margin-top: 50px;
+    padding: 25px;
+    border-radius: 14px;
+    border: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    transition: 0.35s background-color ease-in;
+}
+.clicker-button:active{
+    background-color: lightcoral;
+}
+
+.clicker-button:hover{
+    background-color:darkred;
 }

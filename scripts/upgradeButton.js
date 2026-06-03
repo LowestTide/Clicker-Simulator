@@ -1,15 +1,24 @@
-import {upgradeButtonContainer} from './clicker-game.js';
+import {upgradeButtonContainer, loadPage} from './clicker-game.js';
 import {userData} from './userData.js';
+
+function calculateNeededClicks(price, userData){
+    if(price - userData.clicks === 1){
+        return '1 more click';
+    }else {
+        return `${price-userData.clicks} more clicks`;
+    }
+}
 
 
 export class upgradeButton {
-    constructor(description, price, clickMultiplier, clickAmount, textContent){
+    constructor(description, price, clickMultiplier, clickAmount, textContent, fun){
         this.description = description;
         this.price = price;
         this.clickAmount = clickAmount;
         this.clickMultiplier = clickMultiplier;
         this.textContent = textContent;
         this.element = null;
+        this.isClicked = false;
     }
 
     build(){
@@ -18,6 +27,10 @@ export class upgradeButton {
         container.classList.add("upgrade-button-wrapper");
         container.textContent = this.description;
         upgradeButtonContainer.appendChild(container);
+
+        let priceContainer = document.createElement('span');
+        priceContainer.textContent = `Price: ${this.price}`;
+        container.appendChild(priceContainer);
 
         this.element.textContent = this.textContent;
         this.element.classList.add("upgrade-button");
@@ -36,8 +49,10 @@ export class upgradeButton {
         
 
         if (this.element && this.price <= userData.clicks) {
-            this.element.remove();
+            this.element.style = "visibility: 0;"
             this.element = null;
+            
+            console.log(userData.clicks);
             userData.principalAmount += this.clickAmount;
             userData.clickMultiplier += this.clickMultiplier;
             
@@ -45,8 +60,21 @@ export class upgradeButton {
             console.log('working?');
             
             userData.clicks -= this.price;
+            loadPage();
+            // this.element.classList.add("uprade-button-clicked");
+
+            //this.element.removeEventListener("click");
             
+        }else{
+            window.alert(`You do not have enough clicks! You need ${calculateNeededClicks(this.price, userData)}!`);
+            return;
         }
     }
 
+}
+
+class utilityButton extends upgradeButton {
+    constructor(){
+        
+    }
 }

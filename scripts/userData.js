@@ -1,4 +1,4 @@
-
+import {loadPage} from './clicker-game.js';
 
 export const userData = {
     clicks: 0,
@@ -6,4 +6,10 @@ export const userData = {
     clickMultiplier: 1,
     
 
+}
+
+function autoClicker(){
+    setInterval(() => {
+        
+    }, 800);
 }
