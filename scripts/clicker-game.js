@@ -1,6 +1,6 @@
 import {upgradeButton} from './upgradeButton.js';
 import {nav} from './nav.js';
-import {userData} from './userData.js';
+import {userData, autoClicker} from './userData.js';
 
 
 
@@ -31,13 +31,12 @@ function saveData(userData){
 
 const testButton = new upgradeButton('This upgrade button increases the click multiplier by 2x and increases click amount to +2.', 1, 1, 1, 'Upgrade Button');
 const testButton2 = new upgradeButton("This upgrade button increases the click multiplier for now. uhh and something else lol WIP", 10, 1, 0, 'Upgrade Button 2');
-const autoClickerButton = new upgradeButton('This upgrade button automatically clicks for you!', 100, 0, 0, 'Autoclicker', () => {
-
-} )
+const autoClickerButton = new upgradeButton('This upgrade button automatically clicks for you!', 100, 0, 0, 'Autoclicker', autoClicker() );
 console.log(testButton);
 new Promise((resolve) => {
     testButton.build();
     testButton2.build();
+    autoClickerButton.build();
     resolve();
 }).then(()=> {
     loadPage();

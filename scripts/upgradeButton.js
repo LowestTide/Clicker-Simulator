@@ -11,7 +11,7 @@ function calculateNeededClicks(price, userData){
 
 
 export class upgradeButton {
-    constructor(description, price, clickMultiplier, clickAmount, textContent, fun){
+    constructor(description, price, clickMultiplier, clickAmount, textContent, fun=null){
         this.description = description;
         this.price = price;
         this.clickAmount = clickAmount;
@@ -19,6 +19,7 @@ export class upgradeButton {
         this.textContent = textContent;
         this.element = null;
         this.isClicked = false;
+        this.fun = fun;
     }
 
     build(){
@@ -56,8 +57,13 @@ export class upgradeButton {
             userData.principalAmount += this.clickAmount;
             userData.clickMultiplier += this.clickMultiplier;
             
-            console.log(userData.clickMultiplier, userData.principalAmount);
-            console.log('working?');
+            
+            
+
+            if(this.fun){
+                this.fun();
+                console.log('function success');
+            }
             
             userData.clicks -= this.price;
             loadPage();
@@ -75,6 +81,6 @@ export class upgradeButton {
 
 class utilityButton extends upgradeButton {
     constructor(){
-        
+
     }
 }
