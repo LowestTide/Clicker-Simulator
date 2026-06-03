@@ -1,96 +1,70 @@
+import {upgradeButton} from './upgradeButton.js';
+import {nav} from './nav.js';
+import {userData} from './userData.js';
 
 
 
-let principalAmount = 1;
-let clickMultiplier = 1;
-let clickIncrease = principalAmount * clickMultiplier;
-let clicks = 0;
-let clickss = 0;
-const playerData = {
-    name: 'null',
-    
-
-}
-const localClicks = localStorage.getItem("clicks", clicks);
-const clickerCounter = document.querySelector('.clicks-counter');
-const clickerButton = document.querySelector('.js-clicker-button');
-const upgradeButtonContainer = document.querySelector('.js-upgrade-button-container');
-const nav = document.querySelector('nav');
 
 
-class upgradeButton {
-    constructor(description, price, clickMultiplier, clickAmount, textContent){
-        this.description = description;
-        this.price = price;
-        this.clickAmount = clickAmount;
-        this.clickMultiplier = clickMultiplier;
-        this.textContent = textContent;
-        this.element = null;
-    }
+export const clickerCounter = document.querySelector('.clicks-counter');
+export const clickerButton = document.querySelector('.js-clicker-button');
+export const upgradeButtonContainer = document.querySelector('.js-upgrade-button-container');
+const casesLink = document.querySelector('.js-cases');
+let clickIncrease = userData.principalAmount * userData.clickMultiplier;
+console.log(clickIncrease, casesLink);
 
-    build(){
-        this.element = document.createElement('button');
-        this.element.textContent = this.textContent;
-        this.element.classList.add("upgrade-button");
-        this.element.upgradeButton = this;
-        upgradeButtonContainer.appendChild(this.element);
-        this.element.addEventListener("click", () => {
-            console.log('test');
-            this.purchase();
-        })
-        
-        return this.element;
-    }
 
-    purchase(){
-        
 
-        if (this.element && this.price <= clickss) {
-            this.element.remove();
-            this.element = null;
-            principalAmount += this.clickAmount;
-            clickMultiplier += this.clickMultiplier;
-            clickIncrease = principalAmount * clickMultiplier;
-            console.log('working?');
-            console.log(principalAmount);
-            clicks -= this.price;
-        }
-    }
 
-}
+
+
+
 
 function loadPage(){
 
     updateClickerCounter();
 }
 
-const testButton = new upgradeButton('null', 1, 1, 1, 'null');
-const testButton2 = new upgradeButton("null 2", 10, 1, 0, 'null');
+function saveData(userData){
+    localStorage.setItem('userData', JSON.stringify(userData));
+}
+
+const testButton = new upgradeButton('This upgrade button increases the click multiplier by 2x and increases click amount to +2.', 1, 1, 1, 'Upgrade Button');
+const testButton2 = new upgradeButton("null 2", 10, 1, 0, 'Upgrade Button 2');
 console.log(testButton);
 new Promise((resolve) => {
     testButton.build();
     testButton2.build();
     resolve();
 }).then(()=> {
-    document.querySelectorAll(".upgrade-button")
-    .forEach( upgButton => {
-        upgButton.addEventListener("click", () => {
-            
-        })
-})
+    loadPage();
 })
 
-
+function saveToStorage(userData){
+    localStorage.setItem('userData', JSON.stringify({
+        clicks: userData.clicks,
+        principalAmount: userData.principalAmount,
+        clickMultiplier: userData.clickMultiplier,
+        clickIncrease: userData.principalAmount * userData.clickMultiplier
+        
+    })
+)}
 
 
 clickerButton.addEventListener("click", () => {
-    clickss += clickIncrease;
-    
+    clickIncrease = userData.clickMultiplier * userData.clickMultiplier;
+    userData.clicks += clickIncrease;
+    console.log(clickIncrease);
+    console.log(userData);
     updateClickerCounter();
 })
 
 
 
 function updateClickerCounter(){
-    clickerCounter.innerHTML = `Clicks: ${clickss}`;
+    clickerCounter.innerHTML = `Clicks: ${userData.clicks}`;
 }
+
+casesLink.addEventListener('click', () => {
+    window.location = './cases.html';
+})

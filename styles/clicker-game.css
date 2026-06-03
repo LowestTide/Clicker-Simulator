@@ -21,11 +21,34 @@ nav:hover{
 }
 .upgrade-button{
     cursor: pointer;
+    height: 50px ;
+    border-radius: 14px;
+    border: none;
+    margin: 15px 25px;
+    width: 200px;
+    background-color: rgb(255, 132, 153);
+    color: white;
 }
 
 .upgrade-button-container{
     cursor: pointer;
-    position: relative;
-    bottom: 0px;
-    background-color: grey;
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    background-color: rgb(251, 26, 26);
+    height: 300px;
+    z-index: -3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+.upgrade-button-wrapper{
+    background-color: pink;
+    display: block;
+    padding: 35px 5px;
+    height: 100px;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
 }
