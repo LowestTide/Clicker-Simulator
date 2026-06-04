@@ -8,10 +8,13 @@ export const userData = {
 
 }
 
-export function autoClicker(){
-    console.log('it has run?');
-    setInterval(() => {
+export function autoClicker(flag=false){
+    // console.log('it has run?');
+    if(flag){
+        setInterval(() => {
         userData.clicks+= userData.principalAmount * userData.clickMultiplier;
         loadPage();
     }, 800);
+    }
+    
 }

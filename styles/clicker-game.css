@@ -1,5 +1,6 @@
 *{
     margin: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 body{
     margin: 10px 0px;
@@ -28,31 +29,72 @@ nav:hover{
     width: 200px;
     background-color: rgb(255, 132, 153);
     color: white;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease-in-out;
+
+}
+.upgrade-button:hover{
+    background-color: rgb(255, 112, 153);
+}
+.upgrade-button-container-container{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    z-index: 1;
 }
 
 .upgrade-button-container{
-    cursor: pointer;
-    position: absolute;
-    top: 400px;
+    
     width: 100%;
+    max-width: 1200px;
     background-color: rgb(251, 26, 26);
     height: 300px;
-    z-index: -3;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    
+}
+.upgrade-button-clicked{
+    background-color: grey;
+    pointer-events: none;
     
 }
 .upgrade-button-wrapper{
     background-color: pink;
-    display: block;
-    padding: 35px 5px;
+    font-size: 14px;
+    border: 2px black solid;
+    
+    
     height: 100px;
     width: 100%;
     display: flex; 
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    min-width: 150px;
+    max-width: 300px;
+    flex: 0 0 auto;
+    scroll-behavior: smooth;
+    border-radius: 25px;
+    padding: 35px 10px;
+    margin: 0px 5px;
+    
+}
+
+.price-container{
+    color: rgb(241, 52, 52);
+    margin: 10px 20px;
 }
 
 .clicker-container{
@@ -78,4 +120,18 @@ nav:hover{
 
 .clicker-button:hover{
     background-color:darkred;
+}
+
+.utility-button{
+    background-color: rgb(220, 139, 10);
+    border: 1px orange solid;
+    font-size: 14px;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    margin: 15px 25px;
+    cursor: pointer;
+}
+.utility-button:hover{
+    background-color: rgb(220, 119, 10);
 }
