@@ -31,7 +31,7 @@ function saveData(userData){
 
 const testButton = new upgradeButton('This upgrade button increases the click multiplier by 2x and increases click amount to +2.', 1, 1, 1, 'Upgrade Button');
 const testButton2 = new upgradeButton("This upgrade button increases the click multiplier for now. uhh and something else lol WIP", 10, 1, 0, 'Upgrade Button 2');
-const autoClickerButton = new utilityButton('This upgrade button automatically clicks for you!', 100,'Autoclicker', autoClicker() );
+const autoClickerButton = new utilityButton('This upgrade button automatically clicks for you!', 100,'Autoclicker', autoClicker, false );
 console.log(autoClickerButton);
 new Promise((resolve) => {
     testButton.build();
@@ -42,15 +42,7 @@ new Promise((resolve) => {
     loadPage();
 })
 
-export function saveToStorage(userData){
-    localStorage.setItem('userData', JSON.stringify({
-        clicks: userData.clicks,
-        principalAmount: userData.principalAmount,
-        clickMultiplier: userData.clickMultiplier,
-        clickIncrease: userData.principalAmount * userData.clickMultiplier
-        
-    })
-)}
+
 
 
 clickerButton.addEventListener("click", () => {

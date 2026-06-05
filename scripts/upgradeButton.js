@@ -1,5 +1,6 @@
 import {upgradeButtonContainer, loadPage} from './clicker-game.js';
-import {userData} from './userData.js';
+import {userData, saveToStorage} from './userData.js';
+
 
 function calculateNeededClicks(price, userData){
     if(price - userData.clicks === 1){
@@ -74,6 +75,11 @@ export class upgradeButton {
                 this.purchase();
             });
             this.bought = true;
+            saveToStorage({
+                clicks: userData.clicks,
+                principalAmount: userData.principalAmount,
+                clickMultiplier: userData.clickMultiplier
+            });
         }else{
             if(this.bought===true){
                 
@@ -91,12 +97,14 @@ export class upgradeButton {
 }
 
 export class utilityButton{
-    constructor(description, price, textContent, fun=null, bought=false){
+    
+    constructor(description, price, textContent, fun=null, bought=false, toggleOn=false){
         this.description = description;
         this.price = price;
         this.textContent = textContent;
         this.fun = fun;
         this.bought=bought;
+        this.toggleOn = toggleOn;
     }
     build(){
 
@@ -118,20 +126,58 @@ export class utilityButton{
         this.element.classList.add("utility-button");
         container.appendChild(this.element);
         this.element.addEventListener("click", () => {
-            console.log('oh no');
+            
             this.purchase();
         })
     }
     //fix this buggy upgrade utility button next so that it doesn't suck anymore
+    //sir yes sir (future pranav)
     purchase(){
         if (this.element && this.price <= userData.clicks){
 
-            let container = document.createElement('div');
-            upgradeButtonContainer.appendChild(container);
-            container.classList.add('upgrade-button-wrapper');
-            console.log(container);
-            container.appendChild(this.element);
+            
             this.element.classList.add("upgrade-button-clicked");
+            this.element.classList.remove('utility-button');
+
+            this.fun(this.element, this.bought, this.price);
+
+            userData.clicks -= this.price;
+            loadPage();
+            /*
+
+            let divContainer = document.createElement('div');
+            divContainer.classList.add('autoclicker-section-container');
+            
+            let newButton = document.createElement('button');
+            newButton.classList.add('autoclicker-toggle-button');
+
+
+
+            this.element.parentElement.append(divContainer, newButton);
+
+            divContainer.append(this.element, newButton);
+
+            
+            
+            this.toggleOn ? newButton.textContent = 'ON' : newButton.textContent = 'OFF';
+            newButton.addEventListener('click', () => {
+                this.toggleOn = !this.toggleOn;
+                this.toggleOn ? newButton.textContent = 'ON' : newButton.textContent = 'OFF';
+                console.log('running?')
+                if(this.toggleOn){
+                    console.log('running2');
+                    this.fun(true, this.toggleOn);
+                }else{
+                    console.log('not running?')
+                    this.fun(false, this.toggleOn);
+                }
+            })
+            */
+            
+
+            
+            
+            this.bought = true;
 
         }else{
             window.alert(`You do not have enough clicks! You need ${calculateNeededClicks(this.price, userData)}!`);

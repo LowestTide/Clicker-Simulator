@@ -51,8 +51,9 @@ nav:hover{
 .upgrade-button-container{
     
     width: 100%;
-    max-width: 1200px;
-    background-color: rgb(251, 26, 26);
+
+    
+    background-color: rgb(194, 80, 80);
     height: 300px;
     display: flex;
     flex-direction: row;
@@ -66,7 +67,14 @@ nav:hover{
 }
 .upgrade-button-clicked{
     background-color: grey;
+    font-size: 14px;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    margin: 5px 25px;
     pointer-events: none;
+    border: none;
+    margin: auto;
     
 }
 .upgrade-button-wrapper{
@@ -78,7 +86,7 @@ nav:hover{
     height: 100px;
     width: 100%;
     display: flex; 
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     position: relative;
@@ -134,4 +142,33 @@ nav:hover{
 }
 .utility-button:hover{
     background-color: rgb(220, 119, 10);
+}
+
+.autoclicker-section-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.autoclicker-toggle-button{
+    border-radius: 10px;
+    border: none;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    /* margin-left: 8px; */
+}
+.autoclicker-toggle-button-on{
+    background-color: red;
+}
+
+.autoclicker-upgrade-container{
+    background-color: rgb(104, 17, 31);
+    border-radius: 15px;
+    color: white;
+    border: none;
+    padding: 12px;
+    margin: 0px 15px;
+    cursor: pointer;
 }
